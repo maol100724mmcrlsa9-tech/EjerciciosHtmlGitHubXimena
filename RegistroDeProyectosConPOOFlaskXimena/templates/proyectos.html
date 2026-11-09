@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titulo %}Proyectos registrados{% endblock %}
+
+{% block contenido %}
+    <h1>Proyectos registrados</h1>
+
+    {% if proyectos %}
+        {% for proyecto in proyectos %}
+            <div class="tarjeta">
+                <h2>{{ proyecto.nombre }}</h2>
+                <p>Responsable: {{ proyecto.responsable }}</p>
+                <p>Descripción: {{ proyecto.descripcion }}</p>
+                <p>Estado: {{ proyecto.estado }}</p>
+                <p>Asignatura: {{ proyecto.asignatura }}</p>
+                <p>Días restantes: {{ proyecto.dias_restantes }}</p>
+                <a class="boton" href="/editar/{{ proyecto.id }}">Editar estado</a>
+                <form action="/eliminar/{{ proyecto.id }}" method="POST">
+                    <button type="submit">Eliminar proyecto</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay proyectos registrados.</p>
+    {% endif %}
+
+    <a class="boton" href="/registrar">Registrar otro proyecto</a>
+{% endblock %}

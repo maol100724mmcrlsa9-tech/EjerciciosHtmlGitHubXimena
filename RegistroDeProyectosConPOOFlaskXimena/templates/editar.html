@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %}Editar estado{% endblock %}
+
+{% block contenido %}
+    <h1>Editar estado del proyecto</h1>
+    <h2>{{ proyecto.nombre }}</h2>
+
+    <form method="POST">
+        <label for="estado">Nuevo estado:</label>
+        <input type="text" id="estado" name="estado"
+               value="{{ proyecto.estado }}" required>
+        <button type="submit">Guardar cambio</button>
+    </form>
+
+    <a class="boton" href="/proyectos">Cancelar</a>
+{% endblock %}

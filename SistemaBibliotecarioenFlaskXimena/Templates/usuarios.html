@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div class="row p-2 m-1 container-fluid bg-success text-white rounded" style="background-color: #157347 !important;">
+    <!-- Formulario a la izquierda (3 columnas) -->
+    <div class="col-md-3 border border-white p-2">
+        <form action="/Agregar_Usuario" method="POST">
+            <p class="h6 mb-2"><b>Id:</b><input type="text" name="id" class="form-control form-control-sm" placeholder="Clave" required></p>
+            <p class="h6 mb-2"><b>Nombre:</b><input type="text" name="nombre" class="form-control form-control-sm" placeholder="Nombre del Usuario" required></p>
+            <p class="h6 mb-2"><b>Direccion:</b><input type="text" name="direccion" class="form-control form-control-sm" placeholder="Direccion del Usuario" required></p>
+            <p class="h6 mb-2"><b>Telefono:</b><input type="text" name="telefono" class="form-control form-control-sm" placeholder="Telefono del Usuario" required></p>
+            <p class="h6 mb-2"><b>Correo:</b><input type="email" name="correo" class="form-control form-control-sm" placeholder="Correo del Usuario" required></p>
+            <p class="h6 mb-2"><b>Curp:</b><input type="text" name="curp" class="form-control form-control-sm" placeholder="Curp del Usuario" required></p>
+            
+            <div class="mt-3">
+                <button type="submit" class="btn btn-light btn-sm me-1 text-dark">Guardar</button>
+                <a href="/Login" class="btn btn-secondary btn-sm">Regresar</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabla a la derecha (9 columnas con scroll responsivo si es necesario) -->
+    <div class="col-md-9 border border-white p-2">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered bg-white table-sm text-dark align-middle mb-0" style="font-size: 13px;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>curp</th>
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario[0] if usuario is iterable else usuario.id }}</td>
+                        <td>{{ usuario[1] if usuario is iterable else usuario.nombre }}</td>
+                        <td>{{ usuario[2] if usuario is iterable else usuario.direccion }}</td>
+                        <td>{{ usuario[3] if usuario is iterable else usuario.telefono }}</td>
+                        <td>{{ usuario[4] if usuario is iterable else usuario.correo }}</td>
+                        <td>{{ usuario[5] if usuario is iterable else usuario.curp }}</td>
+                        <td class="text-center" style="width: 90px;">
+                            <a href="/ModificarUsuario/{{ usuario[0] if usuario is iterable else usuario.id }}" class="btn btn-secondary btn-sm py-0 px-1 mb-1 d-block" style="font-size: 11px;">Modificar</a>
+                            <a href="/EliminarUsuario/{{ usuario[0] if usuario is iterable else usuario.id }}" class="btn btn-danger btn-sm py-0 px-1 d-block" style="font-size: 11px;">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

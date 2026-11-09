@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #E7D9CA;
+    color: #6B5A3E;
+}
+
+.encabezado {
+    padding: 20px;
+    background: #8A2035;
+    color: white;
+}
+
+.contenedor {
+    width: 80%;
+    margin: 30px auto;
+    padding: 24px;
+    background: white;
+    border: 1px solid #D8C4A5;
+}
+
+.navegacion a {
+    margin-right: 12px;
+    color: white;
+}
+
+.boton,
+button {
+    padding: 8px 14px;
+    color: white;
+    background: #9C2B3C;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+}
+
+input,
+textarea,
+select {
+    padding: 8px;
+    border: 1px solid #D8C4A5;
+}
+
+.mensaje {
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #E7D9CA;
+    border-left: 5px solid #8A2035;
+    border-radius: 5px;
+}
+
+.tarjeta {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #D8C4A5;
+}
